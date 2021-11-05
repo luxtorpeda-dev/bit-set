@@ -11,9 +11,7 @@ keywords = ["data-structures"]
 readme = "README.md"
 
 [dev-dependencies]
-rand = "*"
+rand = "0.3"
 
-[dependencies.bit-vec]
-
-[features]
-nightly = []
+[dependencies]
+bit-vec = "0.4"

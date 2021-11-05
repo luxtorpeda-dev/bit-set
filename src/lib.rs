@@ -57,7 +57,7 @@ use std::cmp::Ordering;
 use std::cmp;
 use std::fmt;
 use std::hash;
-use std::iter::{Chain, Enumerate, Repeat, Skip, Take, repeat};
+use std::iter::{Chain, Enumerate, Repeat, Skip, Take};
 use std::iter::{self, FromIterator};
 
 type MatchWords<'a, B> = Chain<Enumerate<Blocks<'a, B>>, Skip<Take<Enumerate<Repeat<B>>>>>;
@@ -797,13 +797,13 @@ impl<B: BitBlock> BitSet<B> {
 
 impl<B: BitBlock> fmt::Debug for BitSet<B> {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
-        try!(write!(fmt, "{{"));
+        write!(fmt, "{{")?;
         let mut first = true;
         for n in self {
             if !first {
-                try!(write!(fmt, ", "));
+                write!(fmt, ", ")?;
             }
-            try!(write!(fmt, "{:?}", n));
+            write!(fmt, "{:?}", n)?;
             first = false;
         }
         write!(fmt, "}}")
